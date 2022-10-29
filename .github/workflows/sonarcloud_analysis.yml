@@ -15,7 +15,7 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
-            -Dsonar.organization=cekocvetkov
+            -Dsonar.organization=cekocvetkov-org
             -Dsonar.projectKey=cekocvetkov_sast-dast-iast-rasp-sca
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
