@@ -4,7 +4,10 @@ let app = express();
 
 const PeopleService = require("./services/people-service.js");
 
-app.use(cors());
+let corsOptions = {
+    origin: 'localhost:3001' // Compliant
+};
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
     console.log("Get request on '/'")
