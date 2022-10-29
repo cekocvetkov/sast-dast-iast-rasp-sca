@@ -1,6 +1,7 @@
 let express = require("express");
 let cors = require("cors");
 let app = express();
+app.disable("x-powered-by");
 
 const PeopleService = require("./services/people-service.js");
 
