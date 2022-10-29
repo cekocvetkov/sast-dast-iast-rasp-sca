@@ -1,0 +1,21 @@
+name: SonarCloud Analysis
+
+on: [push]
+
+jobs:
+  SonarCloudAnalysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Analyze with SonarCloud
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.organization=cekocvetkov
+            -Dsonar.projectKey=cekocvetkov_sast-dast-iast-rasp-sca
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
