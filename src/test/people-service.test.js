@@ -4,7 +4,7 @@ describe("People Service Tests", () => {
         let people = PeopleService.getPeople();
         expect(people.length).toBe(2);
         expect(people[0].name).toBe('Zeko');
-        expect(people[0].name).toBe('Gecko');
+        expect(people[1].name).toBe('Gecko');
     })
 
     test('Should get 0 people if there are none', () => {
