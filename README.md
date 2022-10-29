@@ -1,2 +1,2 @@
 # sast-dast-iast-rasp-sca
-(training project)
+(training project for security and code analysis scans)
