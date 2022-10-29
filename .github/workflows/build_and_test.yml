@@ -8,10 +8,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Build and Test
+      
+      - name: Build
         uses: actions/setup-node@v3
         with:
           node-version: 16.8.0
       - run: |
           npm i
+      
+      - name: Test
+      - run: |
           npm run test
