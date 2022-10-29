@@ -1,4 +1,4 @@
-name: Run Tests
+name: Build and Test
 
 on: [push]
 
@@ -8,8 +8,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js
+      - name: Build and Test
         uses: actions/setup-node@v3
         with:
           node-version: 16.8.0
-      - run: npm run test
+      - run: |
+          npm i
+          npm run test
