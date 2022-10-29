@@ -7,15 +7,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
       
-      - name: Build
+      - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16.8.0
-      - run: |
+          
+      - name: Build
+        run: |
           npm i
       
       - name: Test
-      - run: |
+        run: |
           npm run test
