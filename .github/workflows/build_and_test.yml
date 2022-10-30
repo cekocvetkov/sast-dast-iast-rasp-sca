@@ -91,5 +91,6 @@ jobs:
             npm run integration-tests
 
       
-          
-      
+  SonarCloud-Analysis:
+    name: SonarCloud Analysis
+    uses: ./.github/workflows/sonarcloud_analysis.yml
