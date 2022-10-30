@@ -66,6 +66,12 @@ jobs:
           path: coverage/lcov.info
           retention-days: 1
           
+      - name: 'Check'
+        run: |
+          ls
+          cd coverage
+          ls
+          
   SonarCloudAnalysis:
       runs-on: ubuntu-latest
       needs: [Build-and-Unit-Tests]
