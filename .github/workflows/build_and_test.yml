@@ -66,15 +66,10 @@ jobs:
           path: coverage/lcov.info
           retention-days: 1
           
-      - name: 'Check'
-        run: |
-          ls
-          cd coverage
-          ls
           
   SonarCloudAnalysis:
       runs-on: ubuntu-latest
-      needs: [Build-and-Unit-Tests]
+      needs: [Build-and-Test]
       steps:
         - name: Checkout
           uses: actions/checkout@v3
@@ -91,7 +86,7 @@ jobs:
               -Dsonar.organization=cekocvetkov-org
               -Dsonar.projectKey=cekocvetkov_sast-dast-iast-rasp-sca
               -Dsonar.qualitygate.wait=true
-              -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
+              -Dsonar.javascript.lcov.reportPaths=/home/runner/work/sast-dast-iast-rasp-sca/sast-dast-iast-rasp-sca/coverage/lcov.info
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
