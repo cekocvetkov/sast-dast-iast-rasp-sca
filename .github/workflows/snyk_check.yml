@@ -1,6 +1,7 @@
 name: Snyk Vulnerabilities Check
 on: 
-  workflow_dispatch
+  workflow_dispatch:
+  workflow_call:
 jobs:
   Snyk:
     runs-on: ubuntu-latest
