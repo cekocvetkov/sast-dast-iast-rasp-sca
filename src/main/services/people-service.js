@@ -1,3 +1,4 @@
+const peopleDao = require('../dao/people-dao.js')
 class PeopleService {
     static DB = [
         { name: 'Zeko' },
@@ -10,6 +11,18 @@ class PeopleService {
 
     static setPeople(people) {
         this.DB = people;
+    }
+
+    static async getPeopleFromRealDb() {
+        return peopleDao.getAllPeople();
+    }
+
+    static async getPersonById(id) {
+        return peopleDao.getById(id);
+    }
+
+    static createPerson(person) {
+        return peopleDao.createPerson(person);
     }
 }
 
