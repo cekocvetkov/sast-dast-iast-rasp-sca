@@ -34,8 +34,14 @@ jobs:
         run: |
           npm run unit-tests
   
+  SonarCloud-Analysis:
+    uses: ./.github/workflows/sonarcloud_analysis.yml
+  
+  Snyk:
+    uses: ./.github/workflows/snyk_check.yml
+  
   Integration-Tests:
-      needs: [Build-and-Unit-Tests]
+      needs: [Build-and-Unit-Tests, SonarCloud-Analysis, Snyk]
       runs-on: ubuntu-latest
       
       services:
@@ -91,6 +97,4 @@ jobs:
             npm run integration-tests
 
       
-  SonarCloud-Analysis:
-    name: SonarCloud Analysis
-    uses: ./.github/workflows/sonarcloud_analysis.yml
+
