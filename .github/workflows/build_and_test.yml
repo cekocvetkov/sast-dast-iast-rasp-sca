@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Build-and-Unit-Tests:
+  Build-and-Test:
     runs-on: ubuntu-latest
     services:
       # label used to access the service container
