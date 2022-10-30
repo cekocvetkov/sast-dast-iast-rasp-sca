@@ -20,7 +20,7 @@ jobs:
           npm i
       
       - name: Unit Tests
-        id: unit-tests
+        id: unit-test
         run: |
           npm run unit-tests
           
@@ -30,7 +30,7 @@ jobs:
           npm run integration-tests
           
     services:
-      if: steps.unit-tests.outcome == 'success'
+      needs: unit-test
       # label used to access the service container
       postgres:
         # Docker Hub image
