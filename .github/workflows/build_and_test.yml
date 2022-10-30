@@ -36,10 +36,13 @@ jobs:
   
   SonarCloud-Analysis:
     uses: ./.github/workflows/sonarcloud_analysis.yml
-  
+    secrets:
+      sonar_token: ${{ secrets.SONAR_TOKEN }}
   Snyk:
     uses: ./.github/workflows/snyk_check.yml
-  
+    secrets:
+      snyk_token: ${{ secrets.SNYK_TOKEN }}
+
   Integration-Tests:
       needs: [Build-and-Unit-Tests, SonarCloud-Analysis, Snyk]
       runs-on: ubuntu-latest
