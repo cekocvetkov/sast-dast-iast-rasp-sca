@@ -15,6 +15,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Download test coverage artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: unit-tests-coverage
+
+
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
         with:
@@ -22,6 +28,7 @@ jobs:
             -Dsonar.organization=cekocvetkov-org
             -Dsonar.projectKey=cekocvetkov_sast-dast-iast-rasp-sca
             -Dsonar.qualitygate.wait=true
+            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.sonar_token }}
