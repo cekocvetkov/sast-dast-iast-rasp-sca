@@ -25,6 +25,7 @@ jobs:
           
       - name: Integration Tests
         run: |
+          npm run migrate
           npm run integration-tests
           
     services:
