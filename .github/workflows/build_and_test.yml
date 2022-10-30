@@ -82,7 +82,7 @@ jobs:
         - name: Check
           run: |
             ls
-            cd coverage
+            cat lcov.info
             ls
 
         - name: Analyze with SonarCloud
