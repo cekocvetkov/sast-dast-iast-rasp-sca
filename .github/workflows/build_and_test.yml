@@ -28,76 +28,83 @@ jobs:
         run: |
           npm i
       
-      
       - name: Unit Tests
         id: unit-test
         run: |
           npm run unit-tests
-  
+          
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v3
+        with:
+          name: unit-tests-coverage
+          path: ./coverage/lcov.info
+          retention-days: 1
+          
   SonarCloud-Analysis:
     uses: ./.github/workflows/sonarcloud_analysis.yml
     secrets:
       sonar_token: ${{ secrets.SONAR_TOKEN }}
-  Snyk:
-    uses: ./.github/workflows/snyk_check.yml
-    secrets:
-      snyk_token: ${{ secrets.SNYK_TOKEN }}
-
-  Integration-Tests:
-      needs: [Build-and-Unit-Tests, SonarCloud-Analysis, Snyk]
-      runs-on: ubuntu-latest
       
-      services:
-        # label used to access the service container
-        postgres:
-          # Docker Hub image
-          image: postgres:latest
-          # service environment variables
-          # `POSTGRES_HOST` is `postgres`
-          env:
-            # optional (defaults to `postgres`)
-            POSTGRES_DB: peopledb
-            # required
-            POSTGRES_PASSWORD: postgresPasswort
-            # optional (defaults to `5432`)
-            POSTGRES_PORT: 5432
-            # optional (defaults to `postgres`)
-            POSTGRES_USER: postgresUser
-          ports:
-            # maps tcp port 5432 on service container to the host
-            - 6432:5432
-          # set health checks to wait until postgres has started
-          options: >-
-            --health-cmd pg_isready
-            --health-interval 10s
-            --health-timeout 5s
-            --health-retries 5
+#   Snyk:
+#     uses: ./.github/workflows/snyk_check.yml
+#     secrets:
+#       snyk_token: ${{ secrets.SNYK_TOKEN }}
 
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v3
+#   Integration-Tests:
+#       needs: [Build-and-Unit-Tests, SonarCloud-Analysis, Snyk]
+#       runs-on: ubuntu-latest
       
-        - name: Setup node
-          uses: actions/setup-node@v3
-          with:
-            node-version: 16.8.0
+#       services:
+#         # label used to access the service container
+#         postgres:
+#           # Docker Hub image
+#           image: postgres:latest
+#           # service environment variables
+#           # `POSTGRES_HOST` is `postgres`
+#           env:
+#             # optional (defaults to `postgres`)
+#             POSTGRES_DB: peopledb
+#             # required
+#             POSTGRES_PASSWORD: postgresPasswort
+#             # optional (defaults to `5432`)
+#             POSTGRES_PORT: 5432
+#             # optional (defaults to `postgres`)
+#             POSTGRES_USER: postgresUser
+#           ports:
+#             # maps tcp port 5432 on service container to the host
+#             - 6432:5432
+#           # set health checks to wait until postgres has started
+#           options: >-
+#             --health-cmd pg_isready
+#             --health-interval 10s
+#             --health-timeout 5s
+#             --health-retries 5
 
-        - name: Cache dependencies
-          id: cache
-          uses: actions/cache@v2
-          with:
-            path: ./node_modules
-            key: modules-${{ hashFiles('package-lock.json') }}
+#       steps:
+#         - name: Checkout
+#           uses: actions/checkout@v3
+      
+#         - name: Setup node
+#           uses: actions/setup-node@v3
+#           with:
+#             node-version: 16.8.0
+
+#         - name: Cache dependencies
+#           id: cache
+#           uses: actions/cache@v2
+#           with:
+#             path: ./node_modules
+#             key: modules-${{ hashFiles('package-lock.json') }}
             
-        - name: Build
-          if: steps.cache.outputs.cache-hit != 'true'
-          run: |
-            npm i
+#         - name: Build
+#           if: steps.cache.outputs.cache-hit != 'true'
+#           run: |
+#             npm i
             
-        - name: Integration Tests
-          run: |
-            npm run migrate
-            npm run integration-tests
+#         - name: Integration Tests
+#           run: |
+#             npm run migrate
+#             npm run integration-tests
 
       
 
