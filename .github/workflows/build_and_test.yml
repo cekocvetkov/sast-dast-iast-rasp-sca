@@ -38,7 +38,6 @@ jobs:
       runs-on: ubuntu-latest
       
       services:
-        needs: unit-test
         # label used to access the service container
         postgres:
           # Docker Hub image
@@ -63,8 +62,28 @@ jobs:
             --health-interval 10s
             --health-timeout 5s
             --health-retries 5
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+      
+        - name: Setup node
+          uses: actions/setup-node@v3
+          with:
+            node-version: 16.8.0
+
+        - name: Cache dependencies
+          id: cache
+          uses: actions/cache@v2
+          with:
+            path: ./node_modules
+            key: modules-${{ hashFiles('package-lock.json') }}
             
-      steps: 
+        - name: Build
+          if: steps.cache.outputs.cache-hit != 'true'
+          run: |
+            npm i
+            
         - name: Integration Tests
           run: |
             npm run migrate
