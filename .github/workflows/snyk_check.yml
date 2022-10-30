@@ -1,4 +1,4 @@
-name: Snyk
+name: Snyk Vulnerabilities Check
 on: 
   workflow_dispatch
 jobs:
