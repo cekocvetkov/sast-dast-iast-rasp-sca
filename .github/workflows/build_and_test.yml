@@ -41,6 +41,7 @@ jobs:
           retention-days: 1
           
   SonarCloud-Analysis:
+    needs: [Build-and-Unit-Tests]
     uses: ./.github/workflows/sonarcloud_analysis.yml
     secrets:
       sonar_token: ${{ secrets.SONAR_TOKEN }}
