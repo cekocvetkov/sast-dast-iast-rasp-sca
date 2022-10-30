@@ -78,6 +78,12 @@ jobs:
           uses: actions/download-artifact@v3
           with:
             name: unit-tests-coverage
+            
+        - name: Check
+          run: |
+            ls
+            cd coverage
+            ls
 
         - name: Analyze with SonarCloud
           uses: sonarsource/sonarcloud-github-action@master
