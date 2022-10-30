@@ -93,7 +93,6 @@ jobs:
               -Dsonar.projectKey=cekocvetkov_sast-dast-iast-rasp-sca
               -Dsonar.qualitygate.wait=true
               -Dsonar.javascript.lcov.reportPaths=lcov.info
-              -Dsonar.exclusions=src/test/**
               -Dsonar.tests=src/test
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
