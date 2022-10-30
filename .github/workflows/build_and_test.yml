@@ -63,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: unit-tests-coverage
-          path: ./coverage/lcov.info
+          path: coverage/lcov.info
           retention-days: 1
           
   SonarCloudAnalysis:
