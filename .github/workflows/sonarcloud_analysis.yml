@@ -17,6 +17,7 @@ jobs:
       
       - name: Set variables
         run: |
+          echo ${{ secrets.sonar_token }}
           if [ -z ${{ secrets.sonar_token }} ]
           then
               echo "EMPTY"
