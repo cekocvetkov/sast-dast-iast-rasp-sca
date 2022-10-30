@@ -21,7 +21,7 @@ class PeopleService {
         return peopleDao.getById(id);
     }
 
-    static createPerson(person) {
+    static async createPerson(person) {
         return peopleDao.createPerson(person);
     }
 }
