@@ -14,26 +14,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
-      - name: Set variables
-        run: |
-          echo "${{ secrets.sonar_token }}"
-          echo ${{ secrets.SONAR_TOKEN}}
-          if [ -z ${{ secrets.sonar_token }} ]
-          then
-              echo "EMPTY"
-          else
-              echo "NOT EMPTY
-          fi
-      
-#       - name: Analyze with SonarCloud
-#         uses: sonarsource/sonarcloud-github-action@master
-#         with:
-#           args: >
-#             -Dsonar.organization=cekocvetkov-org
-#             -Dsonar.projectKey=cekocvetkov_sast-dast-iast-rasp-sca
-#             -Dsonar.qualitygate.wait=true
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           SONAR_TOKEN: ${{ secrets.sonar_token }}
+
+      - name: Analyze with SonarCloud
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.organization=cekocvetkov-org
+            -Dsonar.projectKey=cekocvetkov_sast-dast-iast-rasp-sca
+            -Dsonar.qualitygate.wait=true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.sonar_token }}
 
