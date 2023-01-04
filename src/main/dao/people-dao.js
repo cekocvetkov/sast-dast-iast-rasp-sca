@@ -11,8 +11,8 @@ async function getById(id) {
 }
 
 async function createPerson(person) {
-    const query = 'INSERT INTO person(id, name) VALUES($1, $2)'
-    const values = [person.id, person.name]
+    const query = 'INSERT INTO person(id, name, is_amazing) VALUES($1, $2, $3)'
+    const values = [person.id, person.name, person.isAmazing]
 
     await dbPool.query(query, values)
 }

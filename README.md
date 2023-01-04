@@ -1,4 +1,8 @@
-# sast-dast-iast-rasp-sca
-(training project for security and code analysis scans)
+A people project for saving and displaying amazing people
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cekocvetkov_sast-dast-iast-rasp-sca&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cekocvetkov_sast-dast-iast-rasp-sca)
+To start the application locally, a postgres database must be up running. Here an example on how to do this easily on your local machine:
+'docker run --name postgresDbContainer -p 6432:5432 -e POSTGRES_PASSWORD=postgresPasswort -e POSTGRES_USER=postgresUser -e POSTGRES_DB=peopledb -d postgres:latest'
+
+Before starting the application execute the db migrations through 'npm run migrate'
+
+To start the application run 'npm run start'
