@@ -1,0 +1,13 @@
+name: Debug
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Try
+        run: |
+          ls > zeko.txt
+          cat zeko.txt
