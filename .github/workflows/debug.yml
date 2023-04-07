@@ -9,5 +9,9 @@ jobs:
     steps:
       - name: Try
         run: |
+          mkdir z1
+          mkdir z2
+          mkdir z3
+          ls
           ls > zeko.txt
           cat zeko.txt
