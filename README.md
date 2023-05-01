@@ -6,3 +6,4 @@ To start the application locally, a postgres database must be up running. Here a
 Before starting the application execute the db migrations through 'npm run migrate'
 
 To start the application run 'npm run start'
+ 
