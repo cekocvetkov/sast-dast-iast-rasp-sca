@@ -3,6 +3,10 @@ kind: Component
 metadata:
   name: SAST-DAST-IAST-RASP-SCA
   description: A component for SAST backstage.
+  links:
+    - url: https://dashboard.example.com
+      title: My Dashboard
+      icon: dashboard
   tags:
     - node
   annotations:
