@@ -29,6 +29,7 @@ jobs:
     steps:
     - name: sign
       run: |
+        exit 1
         echo "SIGN JOB"
 
   publish:
