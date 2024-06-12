@@ -15,7 +15,7 @@ on:
 jobs:
   build:
     name: build
-    runs-on: ubuntu-latest  
+    runs-on: [ ubuntu-latest ]
     steps:
     - name: build
       run: |
@@ -23,9 +23,9 @@ jobs:
 
   sign:
     name: sign
-    if: github.event.inputs.signBinaries == 'true' )
+    runs-on: [ ubuntu-latest ]
+    if: github.event.inputs.signBinaries == 'true'
     needs: build    
-    runs-on: ubuntu-latest
     steps:
 
     - name: sign
@@ -53,9 +53,9 @@ jobs:
 
   sync:
     name: sync
+    runs-on: [ ubuntu-latest ]
     if: github.event.inputs.publishContainers == 'true'
     needs: [ publish ]
-    runs-on: [ ubuntu-latest ]
     steps:
     - name: sync
       run: |
