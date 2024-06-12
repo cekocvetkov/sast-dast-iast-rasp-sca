@@ -39,7 +39,6 @@ jobs:
     steps:
     - name: publish
       run: |
-        exit 1
         echo "PUBLISH JOB"
 
   deploy:
