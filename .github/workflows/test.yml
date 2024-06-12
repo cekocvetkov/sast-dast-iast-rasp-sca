@@ -19,7 +19,6 @@ jobs:
     steps:
     - name: build
       run: |
-        exit 1
         echo "BUILD JOB"
 
   sign:
@@ -28,9 +27,9 @@ jobs:
     if: github.event.inputs.signBinaries == 'true'
     needs: build    
     steps:
-
     - name: sign
       run: |
+        exit 1
         echo "SIGN JOB"
 
   publish:
