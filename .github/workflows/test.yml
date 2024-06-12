@@ -19,6 +19,7 @@ jobs:
     steps:
     - name: build
       run: |
+        exit 1
         echo "BUILD JOB"
 
   sign:
@@ -34,7 +35,7 @@ jobs:
 
   publish:
     name: publish
-    if: success()
+    if: always()
     runs-on: [ ubuntu-latest ]
     needs: [ build, sign ]
     steps:
