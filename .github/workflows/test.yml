@@ -19,6 +19,7 @@ jobs:
     steps:
     - name: build
       run: |
+        exit 1
         echo "BUILD JOB"
 
   sign:
