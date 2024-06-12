@@ -35,7 +35,7 @@ jobs:
 
   publish:
     name: publish
-    if: always()
+    if: success()
     runs-on: [ ubuntu-latest ]
     needs: [ build, sign ]
     steps:
@@ -46,7 +46,7 @@ jobs:
   deploy:
     name: deploy
     runs-on: [ ubuntu-latest ]
-    if: always() && github.event.inputs.publishContainers == 'true'
+    if: success() && github.event.inputs.publishContainers == 'true'
     needs: [ publish ]
     steps:
     - name: deploy
@@ -56,7 +56,7 @@ jobs:
   sync:
     name: sync
     runs-on: [ ubuntu-latest ]
-    if: always() && github.event.inputs.publishContainers == 'true'
+    if: success() && github.event.inputs.publishContainers == 'true'
     needs: [ publish ]
     steps:
     - name: sync
