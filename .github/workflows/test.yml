@@ -19,7 +19,6 @@ jobs:
     steps:
     - name: build
       run: |
-        exit 1
         echo "BUILD JOB"
 
   sign:
@@ -30,7 +29,6 @@ jobs:
     steps:
     - name: sign
       run: |
-        exit 1
         echo "SIGN JOB"
 
   publish:
